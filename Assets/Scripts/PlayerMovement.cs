@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
     InputAction moveAction;
     InputAction lookAction;
 
+    public static bool inputLocked;
+
     void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -53,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (inputLocked)
+            return;
         moveInput = moveAction.ReadValue<Vector2>();
         lookInput = lookAction.ReadValue<Vector2>();
 

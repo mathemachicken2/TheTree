@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 4722692480710263756}
   - component: {fileID: 7641697227028893093}
   - component: {fileID: 7584740329531567459}
-  - component: {fileID: -3620153957128896136}
+  - component: {fileID: -1457847667503206974}
+  - component: {fileID: 6339876306298443612}
+  - component: {fileID: 1816451959703783007}
   m_Layer: 0
   m_Name: meat1
   m_TagString: Untagged
@@ -115,7 +117,40 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!54 &-3620153957128896136
+--- !u!65 &-1457847667503206974
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3330253605464017756}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.6797779, y: 22.017553, z: 4.1945267}
+  m_Center: {x: 0.191046, y: 10.00878, z: 0.021267354}
+--- !u!114 &6339876306298443612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3330253605464017756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db44a608ebd90534482e200389606614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeatPickup
+--- !u!54 &1816451959703783007
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
