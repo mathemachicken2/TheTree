@@ -1,7 +1,8 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using System.Collections;
 
 public class TreeInteractionTrigger : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class TreeInteractionTrigger : MonoBehaviour
 
     private Vector3 lockedPosition;
     public HitUIFeedback hitUI;
+
+    
 
     void Start()
     {
@@ -48,11 +51,20 @@ public class TreeInteractionTrigger : MonoBehaviour
 
         if (hitCount >= 3)
         {
+
             SpawnLoot();
             Destroy(gameObject);
         }
     }
+    public void ChangeMesh(GameObject obj, Mesh newMesh)
+    {
+        MeshFilter meshFilter = obj.GetComponent<MeshFilter>();
 
+        if (meshFilter != null)
+        {
+            meshFilter.mesh = newMesh;
+        }
+    }
     void SpawnLoot()
     {
         Vector3 spawnPos = transform.position;
