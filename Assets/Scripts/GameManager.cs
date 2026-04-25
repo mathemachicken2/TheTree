@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -54,8 +55,10 @@ public class GameManager : MonoBehaviour
         {
             TryUseTree();
         }
-
+        
     }
+
+    
     IEnumerator IntroSequence()
     {
         PlayerMovement.inputLocked = true;
@@ -73,7 +76,9 @@ public class GameManager : MonoBehaviour
         {
         "The world is turning to flesh.",
         "Your wife is a tree.",
-        "Rescue her by feeding her a chunk of meat."
+        "Rescue her by feeding her a chunk of meat.",
+        "",
+        "You can also consume meat by pressing RMB."
         };
 
         // Show lines one by one
@@ -152,6 +157,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator FadeToRed(float duration)
     {
+        SoundManager.Instance.PlaySound(SoundManager.Instance.wifeTransformationSound);
         yield return new WaitForSeconds(2f);
         float timer = 0f;
         Color color = redFade.color;
@@ -167,6 +173,10 @@ public class GameManager : MonoBehaviour
         if (messageText != null)
             messageText.SetActive(true);
 
+            yield return new WaitForSeconds(2f);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        SceneManager.LoadScene("MainMenu");
     }
     IEnumerator TreeSequence(WifeTree tree)
     {
@@ -201,6 +211,7 @@ public class GameManager : MonoBehaviour
             pressFeedText.SetActive(show);
     }
 
+
     public void Pickup(GameObject obj)
     {
         if (heldObject != null) return;
@@ -222,6 +233,7 @@ public class GameManager : MonoBehaviour
     
     private IEnumerator ConsumeRoutine()
     {
+        SoundManager.Instance.PlaySound(SoundManager.Instance.eatingSound);
         ParticleSystem bloodInstance = Instantiate(bloodEffect, heldObject.transform.position, Quaternion.identity);
         StartCoroutine(FadeRoutine());
         isConsuming = true;

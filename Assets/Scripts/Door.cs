@@ -14,10 +14,12 @@ public class Door : MonoBehaviour
 
     private Quaternion closedRotation;
     private Quaternion openRotation;
+    public GameObject prompt;
 
     void OnEnable()
     {
         interactAction.Enable();
+        
         interactAction.performed += OnInteract;
     }
 
@@ -29,6 +31,7 @@ public class Door : MonoBehaviour
 
     void Start()
     {
+        prompt.SetActive(false);
         closedRotation = transform.rotation;
         openRotation = Quaternion.Euler(0, openAngle, 0) * closedRotation;
     }
@@ -45,17 +48,20 @@ public class Door : MonoBehaviour
         {
             isOpen = !isOpen;
         }
+        SoundManager.Instance.PlaySound(SoundManager.Instance.Door);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
             playerInRange = true;
+        prompt.SetActive(true);
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
             playerInRange = false;
+        prompt.SetActive(false);
     }
 }
