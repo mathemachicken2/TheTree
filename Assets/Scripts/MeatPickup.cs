@@ -15,6 +15,7 @@ public class MeatPickup : MonoBehaviour
 
     private void Pickup()
     {
+        SoundManager.Instance.PlaySound(SoundManager.Instance.pickupSound);
         GameManager.Instance.ShowPrompt(false);
         GameManager.Instance.Pickup(gameObject);
     }

@@ -45,9 +45,11 @@ public class TreeInteractionTrigger : MonoBehaviour
 
     void HitTree()
     {
+        SoundManager.Instance.PlaySound(SoundManager.Instance.chopSound);
         hitCount++;
         animator.SetTrigger("Hit");
         hitUI.ShowHit();
+
 
         if (hitCount >= 3)
         {
